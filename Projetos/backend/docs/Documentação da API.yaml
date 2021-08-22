@@ -1,0 +1,481 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v1
+servers:
+- url: http://localhost:8080/backend
+  description: Generated server url
+paths:
+  /v1/processo/id/{id}:
+    get:
+      tags:
+      - processo-controller
+      operationId: buscaUmProcesso
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProcessoOutputDTO'
+    put:
+      tags:
+      - processo-controller
+      operationId: atualizaProcesso
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessoInputDTO'
+        required: true
+      responses:
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - processo-controller
+      operationId: deletaProcesso
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/processo:
+    get:
+      tags:
+      - processo-controller
+      operationId: listaProcessos
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessoOutputDTO'
+    post:
+      tags:
+      - processo-controller
+      operationId: criaProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessoInputDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/interessado:
+    get:
+      tags:
+      - interessado-controller
+      operationId: listaInteressados
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InteressadoOutputDTO'
+    post:
+      tags:
+      - interessado-controller
+      operationId: cadastrarAssunto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteressadoInputDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InteressadoOutputDTO'
+  /v1/assunto:
+    get:
+      tags:
+      - assunto-controller
+      operationId: listaAssuntos
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssuntoOutputDTO'
+    post:
+      tags:
+      - assunto-controller
+      operationId: cadastrarAssunto_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssuntoInputDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AssuntoOutputDTO'
+  /v1/processo/numeroprocesso:
+    get:
+      tags:
+      - processo-controller
+      operationId: buscaUmProcessoPorNumero
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/processo/chaveprocesso:
+    get:
+      tags:
+      - processo-controller
+      operationId: buscaUmProcessoPorChave
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/processo/cdinteressado:
+    get:
+      tags:
+      - processo-controller
+      operationId: buscaUmProcessoPorInteressado
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/processo/cdassuntodescrisao:
+    get:
+      tags:
+      - processo-controller
+      operationId: buscaUmProcessoPorAssuntoPelaDescrisao
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/processo/cdassunto:
+    get:
+      tags:
+      - processo-controller
+      operationId: buscaUmProcessoPorAssunto
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/processo/buscarpornumero/{id}:
+    get:
+      tags:
+      - processo-controller
+      operationId: pesquisarProcessos
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessoOutputDTO'
+  /v1/interessado/nuidentificacao:
+    get:
+      tags:
+      - interessado-controller
+      operationId: buscarInteressadoPeloNuIdentificacao
+      parameters:
+      - name: valor
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InteressadoOutputDTO'
+  /v1/interessado/id/{id}:
+    get:
+      tags:
+      - interessado-controller
+      operationId: buscarInteressadoPeloId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InteressadoOutputDTO'
+  /v1/exception/{exception_id}:
+    get:
+      tags:
+      - exception-controller
+      operationId: getSpecificException
+      parameters:
+      - name: exception_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /v1/assunto/id/{id}:
+    get:
+      tags:
+      - assunto-controller
+      operationId: buscarAssuntoPorId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AssuntoOutputDTO'
+components:
+  schemas:
+    ProcessoInputDTO:
+      required:
+      - cdAssunto
+      - cdInteressado
+      - descricao
+      - nuAno
+      - sgOrgaoSetor
+      type: object
+      properties:
+        sgOrgaoSetor:
+          type: string
+        nuAno:
+          type: string
+        descricao:
+          type: string
+        cdAssunto:
+          type: integer
+          format: int64
+        cdInteressado:
+          type: integer
+          format: int64
+    Assunto:
+      required:
+      - descricao
+      - dtCadastro
+      - flAtivo
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        descricao:
+          type: string
+        dtCadastro:
+          type: string
+          format: date
+        flAtivo:
+          type: boolean
+    Interessado:
+      required:
+      - dtNascimento
+      - flAtivo
+      - id
+      - nmInteressado
+      - nuIdentificacao
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nmInteressado:
+          type: string
+        nuIdentificacao:
+          type: string
+        dtNascimento:
+          type: string
+          format: date
+        flAtivo:
+          type: boolean
+    ProcessoOutputDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nuProcesso:
+          type: integer
+          format: int64
+        sgOrgaoSetor:
+          type: string
+        nuAno:
+          type: string
+        chaveProcesso:
+          type: string
+        descricao:
+          type: string
+        cdAssunto:
+          $ref: '#/components/schemas/Assunto'
+        cdInteressado:
+          $ref: '#/components/schemas/Interessado'
+    InteressadoInputDTO:
+      type: object
+      properties:
+        nmInteressado:
+          type: string
+        nuIdentificacao:
+          type: string
+        dtNascimento:
+          type: string
+          format: date
+        flAtivo:
+          type: boolean
+    InteressadoOutputDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nmInteressado:
+          type: string
+        nuIdentificacao:
+          type: string
+        dtNascimento:
+          type: string
+          format: date
+        flAtivo:
+          type: boolean
+    AssuntoInputDTO:
+      type: object
+      properties:
+        descricao:
+          type: string
+        dtCadastro:
+          type: string
+          format: date
+        flAtivo:
+          type: boolean
+    AssuntoOutputDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        descricao:
+          type: string
+        dtCadastro:
+          type: string
+          format: date
+        flAtivo:
+          type: boolean
